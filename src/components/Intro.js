@@ -1,5 +1,7 @@
 import { Button, Drawer, Space } from "antd";
 import { useState } from "react";
+import { hiphopIntro } from "../assets/Intros";
+
 const Intro = ({ genre }) => {
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
@@ -19,18 +21,8 @@ const Intro = ({ genre }) => {
         width={500}
         onClose={onClose}
         open={open}
-        extra={
-          <Space>
-            <Button onClick={onClose}>Cancel</Button>
-            <Button type="primary" onClick={onClose}>
-              OK
-            </Button>
-          </Space>
-        }
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <hiphopIntro />
       </Drawer>
     </>
   );

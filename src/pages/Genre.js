@@ -1,6 +1,8 @@
 import Intro from "../components/Intro";
 import NewTextPost from "../components/Posts/NewTextPost";
 import NewVideoPost from "../components/Posts/NewVideoPost";
+import TextPosts from "../components/Posts/TextPosts";
+import VideoPosts from "../components/Posts/VideoPosts";
 import Techniques from "../components/Techniques";
 
 const Genre = ({ genre }) => {
@@ -12,6 +14,8 @@ const Genre = ({ genre }) => {
 
       <NewTextPost genre={genre} />
       <NewVideoPost genre={genre} />
+      <VideoPosts />
+      <TextPosts />
     </>
   );
 };
