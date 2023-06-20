@@ -34,28 +34,23 @@ const NavBar = () => {
       children: [
         {
           label: "Hip Hop",
-          key: "hiphop",
-          genre: hiphopPath,
+          key: hiphopPath,
         },
         {
           label: "Heels",
-          key: "heels",
-          genre: heelsPath,
+          key: heelsPath,
         },
         {
           label: "Street Jazz",
-          key: "streetJazz",
-          genre: streetjazzPath,
+          key: streetjazzPath,
         },
         {
           label: "Girls Style",
-          key: "girlsStyle",
-          genre: girlsstylePath,
+          key: girlsstylePath,
         },
         {
           label: "Open",
-          key: "open",
-          route: openPath,
+          key: openPath,
         },
       ],
     },

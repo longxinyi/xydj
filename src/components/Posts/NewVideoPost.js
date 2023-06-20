@@ -2,7 +2,7 @@ import { Button, Modal, Form, Input, DatePicker, Select, Upload } from "antd";
 import { useState } from "react";
 const { TextArea } = Input;
 
-const NewVideoPost = () => {
+const NewVideoPost = ({ genre }) => {
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState("");
@@ -29,7 +29,7 @@ const NewVideoPost = () => {
       </Button>
 
       <Modal
-        title="Upload a dance prac!"
+        title="Upload a Dance Prac!"
         open={open}
         onOk={handleOk}
         confirmLoading={confirmLoading}
@@ -53,16 +53,22 @@ const NewVideoPost = () => {
           <Form.Item label="Date">
             <DatePicker />
           </Form.Item>
-          <Form.Item label="Genre">
-            <Select>
-              <Select.Option value="general">General</Select.Option>
-              <Select.Option value="hiphop">HipHop</Select.Option>
-              <Select.Option value="girlsStyle">Girls Style</Select.Option>
-              <Select.Option value="heels">Heels</Select.Option>
-              <Select.Option value="open">Open</Select.Option>
-              <Select.Option value="streetJazz">Street Jazz</Select.Option>
-            </Select>
-          </Form.Item>
+          {genre ? (
+            <Form.Item label="Genre">
+              <Input placeholder={genre} disabled></Input>
+            </Form.Item>
+          ) : (
+            <Form.Item label="Genre">
+              <Select>
+                <Select.Option value="general">General</Select.Option>
+                <Select.Option value="hiphop">HipHop</Select.Option>
+                <Select.Option value="girlsStyle">Girls Style</Select.Option>
+                <Select.Option value="heels">Heels</Select.Option>
+                <Select.Option value="open">Open</Select.Option>
+                <Select.Option value="streetJazz">Street Jazz</Select.Option>
+              </Select>
+            </Form.Item>
+          )}
           <Upload
             //className="mt-3 mb-3"
             accept=".mp4"
