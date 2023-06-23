@@ -1,39 +1,33 @@
-import { Button, Modal, Form, Input, DatePicker, Select, Upload } from "antd";
+import { Button, Modal, Form, Input, DatePicker, Select } from "antd";
 import { useState } from "react";
 const { TextArea } = Input;
 
-const NewVideoPost = ({ genre }) => {
-  const [open, setOpen] = useState(false);
+const NewTextPost = ({ genre, setShowTextModal }) => {
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState("");
-  const showModal = () => {
-    setOpen(true);
-  };
+
+  // const showModal = () => {
+  //   setOpen(true);
+  // };
   const handleOk = () => {
-    setModalText("Creating Post...");
     setConfirmLoading(true);
     setTimeout(() => {
-      setOpen(false);
+      setShowTextModal(false);
       setConfirmLoading(false);
     }, 2000);
     //send data to firebase
   };
-  const handleCancel = () => {
-    console.log("Clicked cancel button");
-    setOpen(false);
-  };
+  // const handleCancel = () => {
+  //   console.log("Clicked cancel button");
+  //   setOpen(false);
+  // };
   return (
-    <>
-      <Button type="primary" onClick={showModal}>
-        New Video Post
-      </Button>
-
+    <div>
       <Modal
-        title="Upload a Dance Prac!"
-        open={open}
+        title="Jot your thoughts down!"
+        open={true}
         onOk={handleOk}
         confirmLoading={confirmLoading}
-        onCancel={handleCancel}
+        onCancel={() => setShowTextModal(false)}
       >
         <Form
           labelCol={{
@@ -69,24 +63,13 @@ const NewVideoPost = ({ genre }) => {
               </Select>
             </Form.Item>
           )}
-          <Upload
-            //className="mt-3 mb-3"
-            accept=".mp4"
-            //action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-            listType="picture"
-            maxCount={1}
-            //onChange={handleChange}
-          >
-            <Button>Upload</Button>
-          </Upload>
-
           <Form.Item label="Thoughts">
             <TextArea rows={4} />
           </Form.Item>
         </Form>
       </Modal>
-    </>
+    </div>
   );
 };
 
-export default NewVideoPost;
+export default NewTextPost;

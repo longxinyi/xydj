@@ -16,7 +16,6 @@ import {
   girlsstylePath,
   openPath,
 } from "../utility/urlConfig/routingPaths";
-import flattenDeep from "lodash/flattenDeep";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -63,21 +62,6 @@ const NavBar = () => {
       key: "tiktok",
       icon: <ShareAltOutlined />,
     },
-    {
-      label: "New Post",
-      key: "newPost",
-      icon: <PlusOutlined />,
-      children: [
-        {
-          label: "Video",
-          key: "video",
-        },
-        {
-          label: "Text",
-          key: "text",
-        },
-      ],
-    },
   ];
 
   return (
@@ -85,8 +69,10 @@ const NavBar = () => {
       mode="horizontal"
       items={items}
       selectedKeys={[current]}
+      defaultSelectedKeys={[current]}
       onClick={({ key }) => {
         navigate(key);
+        setCurrent(key);
       }}
     />
   );

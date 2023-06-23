@@ -1,8 +1,9 @@
 export const basePath = "/";
 export const mainPath = "/main";
+export const genres = "/genre";
 export const overviewPath = mainPath + "/overview";
-export const hiphopPath = mainPath + "/hiphop";
-export const heelsPath = mainPath + "/heels";
-export const streetjazzPath = mainPath + "/streetjazz";
-export const girlsstylePath = mainPath + "/girlsstyle";
-export const openPath = mainPath + "/open";
+export const hiphopPath = genres + "/hiphop";
+export const heelsPath = genres + "/heels";
+export const streetjazzPath = genres + "/streetjazz";
+export const girlsstylePath = genres + "/girlsstyle";
+export const openPath = genres + "/open";

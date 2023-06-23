@@ -1,6 +1,6 @@
-import { Button, Drawer, Space } from "antd";
+import { Button, Drawer } from "antd";
 import { useState } from "react";
-import { hiphopIntro } from "../assets/Intros";
+import { hiphopIntro } from "../../assets/Intros";
 
 const Intro = ({ genre }) => {
   const [open, setOpen] = useState(false);
@@ -11,9 +11,9 @@ const Intro = ({ genre }) => {
     setOpen(false);
   };
   return (
-    <>
-      <Button type="primary" onClick={showDrawer}>
-        Open
+    <div>
+      <Button type="link" onClick={showDrawer}>
+        What is {genre} ?
       </Button>
       <Drawer
         title={`What exactly is ${genre}?`}
@@ -24,7 +24,7 @@ const Intro = ({ genre }) => {
       >
         <hiphopIntro />
       </Drawer>
-    </>
+    </div>
   );
 };
 export default Intro;
