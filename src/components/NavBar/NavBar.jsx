@@ -15,7 +15,7 @@ import {
   streetjazzPath,
   girlsstylePath,
   openPath,
-} from "../utility/urlConfig/routingPaths";
+} from "../../utility/urlConfig/routingPaths";
 
 const NavBar = () => {
   const navigate = useNavigate();
