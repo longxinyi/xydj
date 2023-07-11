@@ -56,7 +56,7 @@ const NewTextPost = ({ genre, setShowTextModal }) => {
               <Select>
                 <Select.Option value="general">General</Select.Option>
                 <Select.Option value="hiphop">HipHop</Select.Option>
-                <Select.Option value="girlsStyle">Girls Style</Select.Option>
+                <Select.Option value="pole">Pole</Select.Option>
                 <Select.Option value="heels">Heels</Select.Option>
                 <Select.Option value="open">Open</Select.Option>
                 <Select.Option value="streetJazz">Street Jazz</Select.Option>

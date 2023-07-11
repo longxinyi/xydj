@@ -13,7 +13,7 @@ import {
   hiphopPath,
   heelsPath,
   streetjazzPath,
-  girlsstylePath,
+  polePath,
   openPath,
 } from "../../utility/urlConfig/routingPaths";
 
@@ -44,8 +44,8 @@ const NavBar = () => {
           key: streetjazzPath,
         },
         {
-          label: "Girls Style",
-          key: girlsstylePath,
+          label: "Pole",
+          key: polePath,
         },
         {
           label: "Open",

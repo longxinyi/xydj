@@ -5,5 +5,5 @@ export const overviewPath = mainPath + "/overview";
 export const hiphopPath = genres + "/hiphop";
 export const heelsPath = genres + "/heels";
 export const streetjazzPath = genres + "/streetjazz";
-export const girlsstylePath = genres + "/girlsstyle";
+export const polePath = genres + "/pole";
 export const openPath = genres + "/open";

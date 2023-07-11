@@ -2,12 +2,12 @@ import { Route, Routes } from "react-router-dom";
 import {
   overviewPath,
   hiphopPath,
-  girlsstylePath,
   heelsPath,
   streetjazzPath,
   openPath,
+  polePath,
 } from "../utility/urlConfig/routingPaths";
-import Overview from "./Overview";
+import Overview from "./Overview/Overview";
 import { GENRES } from "../utility/genres";
 import Genre from "./Genre/Genre";
 
@@ -28,10 +28,7 @@ const Content = () => {
           path={streetjazzPath}
           element={<Genre genre={GENRES.STREETJAZZ} />}
         ></Route>
-        <Route
-          path={girlsstylePath}
-          element={<Genre genre={GENRES.GIRLSSTYLE} />}
-        ></Route>
+        <Route path={polePath} element={<Genre genre={GENRES.POLE} />}></Route>
         <Route path={openPath} element={<Genre genre={GENRES.OPEN} />}></Route>
       </Routes>
     </div>

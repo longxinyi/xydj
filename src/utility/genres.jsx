@@ -1,6 +1,6 @@
 export const GENRES = {
   HIPHOP: "Hiphop",
-  GIRLSSTYLE: "Girls Style",
+  POLE: "Pole",
   HEELS: "Heels",
   STREETJAZZ: "Street Jazz",
   OPEN: "Open",
