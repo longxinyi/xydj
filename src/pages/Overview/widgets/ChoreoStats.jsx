@@ -1,51 +1,65 @@
-import { Card } from "antd";
-import heelsIcon from "../../../assets";
-import hiphopIcon from "../../../assets";
-import openIcon from "../../../assets";
-import poleIcon from "../../../assets";
-import streetJazzIcon from "../../../assets";
+import { Card, Typography } from "antd";
+//import heelsIcon from "../../../assets/heelsIcon.png";
+// import hiphopIcon from "../../../assets/hiphopIcon.png";
+// import openIcon from "../../../assets/openIcon.png";
+// import poleIcon from "../../../assets/poleIcon.png";
+// import streetJazzIcon from "../../../assets/streetJazzIcon.png";
+
+const { Text } = Typography;
 
 const DUMMY_DATA = [
   {
     key: 1,
     title: "HIP HOP",
-    icon: hiphopIcon,
+    //icon: hiphopIcon,
     value: 0,
   },
   {
     key: 2,
     title: "HEELS",
-    icon: heelsIcon,
+    //icon: `url(${heelsIcon})`,
     value: 0,
   },
   {
     key: 3,
     title: "POLE",
-    icon: poleIcon,
+    //icon: `url(${poleIcon})`,
     value: 0,
   },
   {
     key: 4,
     title: "STREETJAZZ",
-    icon: streetJazzIcon,
+    //icon: `url(${streetJazzIcon})`,
     value: 0,
   },
   {
     key: 5,
     title: "OPEN",
-    icon: openIcon,
+    //icon: `url(${openIcon})`,
     value: 0,
   },
 ];
 
 const ChoreoStats = () => {
-    return (
-        <Card>
-            {DUMMY_DATA.map((stats) => {
-                
-            })}
-        </Card>
-    )
+  return (
+    <Card>
+      <ul>
+        {DUMMY_DATA.map((stats) => (
+          <li>
+            <div>
+              <img src={stats.icon} alt="icon" />
+            </div>
+            <div>
+              <Text>{stats.value}</Text>
+            </div>
+            <div>
+              <Text>{stats.title}</Text>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </Card>
+  );
 };
 
 export default ChoreoStats;

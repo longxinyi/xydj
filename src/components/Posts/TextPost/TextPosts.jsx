@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card, Pagination } from "antd";
+import classes from "./TextPosts.module.css";
 
 const TextPosts = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,11 +22,11 @@ const TextPosts = () => {
     { title: "Card title15", value: "Card content15" },
   ];
 
-  const onChange = () => {
-    setCurrentPage(currentPage + 1);
+  const onChange = (page) => {
+    setCurrentPage(page);
   };
   return (
-    <div>
+    <div className={classes.textPost}>
       {/* {data &&
         data.map((entry) => {
           <Card title={entry.title} style={{ width: 300 }}>
@@ -39,6 +40,7 @@ const TextPosts = () => {
       </Card>
 
       <Pagination
+        simple
         defaultCurrent={currentPage}
         defaultPageSize={1}
         total={15}

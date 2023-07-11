@@ -4,3 +4,21 @@
   align-items: center;
   justify-content: center;
 }
+
+.newPostBtns {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.smallerWidgets {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.genre {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}

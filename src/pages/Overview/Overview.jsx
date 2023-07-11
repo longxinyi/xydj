@@ -1,5 +1,7 @@
+import ChoreoStats from "./widgets/ChoreoStats";
+
 const Overview = () => {
-  return <h2>Overview</h2>;
+  return <ChoreoStats />;
 };
 
 export default Overview;

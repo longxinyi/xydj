@@ -15,7 +15,7 @@ const Content = () => {
   return (
     <div>
       <Routes>
-        <Route path={overviewPath} index element={<Overview />}></Route>
+        <Route element={<Overview />}></Route>
         <Route
           path={hiphopPath}
           element={<Genre genre={GENRES.HIPHOP} />}

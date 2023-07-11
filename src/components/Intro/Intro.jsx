@@ -149,7 +149,7 @@ const Intros = ({ genre }) => {
           </Title>
         </>
       );
+    default:
+      return "";
   }
 };
-
-const heelsIntro = <Title level={3}>heels</Title>;
