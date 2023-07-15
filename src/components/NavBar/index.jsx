@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu } from "antd";
 import Icon from "@ant-design/icons";
-import { useNavigate, Route, Routes, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   HomeOutlined,
   DownOutlined,
@@ -76,7 +76,7 @@ const NavBar = () => {
         setCurrent(key);
       }}
     >
-      {/* <Icon component={() => <img src="`${crown}`" />}></Icon> */}
+      <Icon component={() => <img src={crown} />}></Icon>
     </Menu>
   );
 };
