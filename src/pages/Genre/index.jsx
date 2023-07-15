@@ -1,14 +1,14 @@
 import { useState } from "react";
-import Intro from "../../components/Intro/Intro";
-import NewTextPost from "../../components/Posts/NewTextPost/NewTextPost";
-import NewVideoPost from "../../components/Posts/NewVideoPost/NewVideoPost";
-import TextPosts from "../../components/Posts/TextPost/TextPosts";
-import VideoPosts from "../../components/Posts/VideoPost/VideoPosts";
-import Techniques from "../../components/Techniques/Techniques";
-import classes from "./Genre.module.css";
+import Intro from "components/Intro";
+import NewTextPost from "components/Posts/NewTextPost";
+import NewVideoPost from "components/Posts/NewVideoPost";
+import TextPosts from "components/Posts/TextPost";
+import VideoPosts from "components/Posts/VideoPost";
+import Techniques from "components/Techniques";
+import classes from "./index.module.css";
 import { Button, Typography, Upload } from "antd";
-import { GENRES } from "../../utility/genres";
-import { ReactComponent as UploadSvg } from "../../assets/upload.svg";
+import { GENRES } from "utility/genres";
+import { ReactComponent as UploadSvg } from "assets/upload.svg";
 const { Text } = Typography;
 
 const Genre = ({ genre }) => {

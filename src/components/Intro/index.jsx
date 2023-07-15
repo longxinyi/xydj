@@ -1,6 +1,6 @@
 import { Button, Drawer, Typography } from "antd";
 import { useState } from "react";
-import { GENRES } from "../../utility/genres";
+import { GENRES } from "utility/genres";
 const { Title } = Typography;
 
 const Intro = ({ genre }) => {

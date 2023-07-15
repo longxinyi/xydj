@@ -6,10 +6,10 @@ import {
   streetjazzPath,
   openPath,
   polePath,
-} from "../utility/urlConfig/routingPaths";
-import Overview from "./Overview/Overview";
-import { GENRES } from "../utility/genres";
-import Genre from "./Genre/Genre";
+} from "utility/urlConfig/routingPaths";
+import Overview from "./Overview";
+import { GENRES } from "utility/genres";
+import Genre from "./Genre";
 
 const Content = () => {
   return (

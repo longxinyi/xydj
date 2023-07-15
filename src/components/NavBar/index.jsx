@@ -8,7 +8,7 @@ import {
   ShareAltOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
-import crown from "../../assets/BPCrown.png";
+import crown from "assets/BPCrown.png";
 import {
   overviewPath,
   hiphopPath,
@@ -16,7 +16,7 @@ import {
   streetjazzPath,
   polePath,
   openPath,
-} from "../../utility/urlConfig/routingPaths";
+} from "utility/urlConfig/routingPaths";
 
 const NavBar = () => {
   const navigate = useNavigate();

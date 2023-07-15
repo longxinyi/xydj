@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Card, Pagination } from "antd";
-import classes from "./TextPosts.module.css";
+import classes from "./index.module.css";
 
 const TextPosts = () => {
   const [currentPage, setCurrentPage] = useState(1);
