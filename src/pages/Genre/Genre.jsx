@@ -4,7 +4,7 @@ import NewTextPost from "../../components/Posts/NewTextPost/NewTextPost";
 import NewVideoPost from "../../components/Posts/NewVideoPost/NewVideoPost";
 import TextPosts from "../../components/Posts/TextPost/TextPosts";
 import VideoPosts from "../../components/Posts/VideoPost/VideoPosts";
-import Techniques from "../../components/Techniques";
+import Techniques from "../../components/Techniques/Techniques";
 import classes from "./Genre.module.css";
 import { Button, Typography, Upload } from "antd";
 import { GENRES } from "../../utility/genres";
@@ -14,10 +14,9 @@ const { Text } = Typography;
 const Genre = ({ genre }) => {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [showTextModal, setShowTextModal] = useState(false);
-  const [showAddEditTechniquesModal, setShowAddEditTechniquesModal] =
-    useState(false);
+  const [showAddTechniquesModal, setShowAddTechniquesModal] = useState(false);
   const handleOnAddTechniquesClicked = () => {
-    return "";
+    setShowAddTechniquesModal(true);
   };
   return (
     <div className={classes.genre}>
@@ -56,6 +55,7 @@ const Genre = ({ genre }) => {
         onClick={() => handleOnAddTechniquesClicked}
       />
       <Techniques />
+      {/* {showAddTechniquesModal && } */}
       <VideoPosts />
     </div>
   );
