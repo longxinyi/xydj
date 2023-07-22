@@ -21,19 +21,16 @@ const Genre = ({ genre }) => {
   return (
     <div className={classes.genre}>
       <div className={classes.header}>
-        <h1 class="mr-5">{genre}</h1>
-        {genre !== GENRES.OPEN ? (
-          <Intro genre={genre} />
-        ) : (
-          <Text>A fusion of all genres!</Text>
-        )}
+        <h1>{genre}</h1>
+
+        <Intro genre={genre} />
       </div>
 
       <div className={classes.smallerWidgets}>
         <TextPosts />
         <div className={classes.newPostBtns}>
           <Button type="primary" onClick={() => setShowTextModal(true)}>
-            New Text Posts
+            New Text Post
           </Button>
 
           {showTextModal && (
@@ -41,7 +38,7 @@ const Genre = ({ genre }) => {
           )}
 
           <Button type="primary" onClick={() => setShowVideoModal(true)}>
-            New Video Posts
+            New Video Post
           </Button>
 
           {showVideoModal && (

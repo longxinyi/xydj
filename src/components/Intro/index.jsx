@@ -1,4 +1,4 @@
-import { Button, Drawer, Typography } from "antd";
+import { Button, Drawer, Typography, Tooltip } from "antd";
 import { useState } from "react";
 import { GENRES } from "utility/genres";
 const { Title } = Typography;
@@ -13,9 +13,11 @@ const Intro = ({ genre }) => {
   };
   return (
     <div>
-      <Button type="link" onClick={showDrawer}>
-        What exactly is this about?
-      </Button>
+      <Tooltip title="learn more" placement="right">
+        <Button type="text" onClick={showDrawer} ghost>
+          ?
+        </Button>
+      </Tooltip>
       <Drawer
         title="Some background history..."
         placement="right"
@@ -147,6 +149,13 @@ const Intros = ({ genre }) => {
             be identified by a performer's fast and intricate footwork, refined
             spins and acrobatic flips and moves.
           </Title>
+        </>
+      );
+
+    case GENRES.OPEN:
+      return (
+        <>
+          <Title level={5}>A blend of different genres!</Title>
         </>
       );
     default:

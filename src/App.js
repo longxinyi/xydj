@@ -7,7 +7,7 @@ function App() {
   return (
     <div
       style={{
-        backgroundColor: "#da98a8",
+        backgroundColor: "#fba3bb",
         color: "#000000",
         fontFamily: "Noto Sans",
       }}
@@ -30,6 +30,9 @@ function App() {
               itemHoverBg: "#000000",
               itemHoverColor: "#e094a7",
               itemSelectedBg: "#6a3a45",
+            },
+            Button: {
+              colorTextLightSolid: "#000000",
             },
           },
         }}
