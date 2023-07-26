@@ -1,3 +1,5 @@
+import formation from "./danceVideos/formation.mp4";
+
 export const TechniquesData = [
   {
     key: "1",
@@ -29,6 +31,6 @@ export const VideosData = [
     date: "21 july 2023",
     notes:
       "first learnt this in girls style class in 2022, decided to challenge this again in 2023 but in heels",
-    video: "https://youtu.be/QU9c0053UAU",
+    video: `${formation}`,
   },
 ];

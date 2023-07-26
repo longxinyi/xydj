@@ -1,7 +1,7 @@
 import { Table, Space, Button, Card } from "antd";
 import { useState } from "react";
 import { VideosData } from "assets/dummyData";
-import VideoPlayer from "react-video-js-player";
+import ReactPlayer from "react-player";
 import { PlusOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
 
@@ -75,16 +75,11 @@ const VideoPosts = ({ onAddClicked }) => {
     >
       <Table
         columns={columns}
-        // expandable={{
-        //   expandedRowRender: (record) => (
-        //     <VideoPlayer
-        //       src={record.video}
-        //       width="720"
-        //       height="420"
-        //       controls={true}
-        //     />
-        //   ),
-        // }}
+        expandable={{
+          expandedRowRender: (record) => (
+            <ReactPlayer url={record.video} controls={true} />
+          ),
+        }}
         dataSource={videos}
       />
     </Card>
