@@ -1,5 +1,24 @@
 .textPost {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+}
+
+.pagination {
+  align-self: flex-end;
+}
+
+.addButton {
+  padding: 10px 10px;
+  align-self: center;
+  display: flex;
+  height: max-content;
+  justify-content: center;
+}
+
+.tableTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }

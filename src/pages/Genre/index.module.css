@@ -22,3 +22,14 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
+
+.videoPosts {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.table {
+  margin: 20px 15px;
+  justify-content: center;
+}

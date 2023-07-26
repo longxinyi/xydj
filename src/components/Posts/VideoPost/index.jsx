@@ -1,76 +1,93 @@
-import { Table, Space } from "antd";
-const columns = [
-  {
-    title: "Song Name",
-    dataIndex: "name",
-    key: "name",
-  },
-  {
-    title: "Date",
-    dataIndex: "date",
-    key: "date",
-  },
-  {
-    title: "Notes",
-    dataIndex: "notes",
-    key: "notes",
-  },
-  {
-    title: "Action",
-    dataIndex: "",
-    key: "x",
-    render: () => (
-      <Space size="middle">
-        <a>Tutorial</a>
-        <a>Delete</a>
-      </Space>
-    ),
-  },
-];
-const data = [
-  {
-    key: 1,
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    description:
-      "My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.",
-  },
-  {
-    key: 2,
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    description:
-      "My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.",
-  },
-  {
-    key: 4,
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-    description:
-      "My name is Joe Black, I am 32 years old, living in Sydney No. 1 Lake Park.",
-  },
-];
+import { Table, Space, Button, Card } from "antd";
+import { useState } from "react";
+import { VideosData } from "assets/dummyData";
+import VideoPlayer from "react-video-js-player";
+import { PlusOutlined } from "@ant-design/icons";
+import classes from "./index.module.css";
 
-const VideoPosts = () => {
-  return (
-    <Table
-      columns={columns}
-      expandable={{
-        expandedRowRender: (record) => (
-          <p
-            style={{
-              margin: 0,
+const VideoPosts = ({ onAddClicked }) => {
+  const [videos, setVideos] = useState(VideosData);
+
+  const columns = [
+    {
+      title: "Song Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Artist",
+      dataIndex: "artist",
+      key: "artist",
+    },
+    {
+      title: "Choreographer",
+      dataIndex: "choreographer",
+      key: "choreographer",
+    },
+    {
+      title: "Date",
+      dataIndex: "date",
+      key: "date",
+    },
+    {
+      title: "Notes",
+      dataIndex: "notes",
+      key: "notes",
+    },
+    {
+      title: "Action",
+      dataIndex: "",
+      key: "x",
+      render: (tutorial, { key }) => (
+        <Space size="middle">
+          <a href={tutorial} target="_blank" rel="noopener noreferrer">
+            Tutorial
+          </a>
+          <Button
+            onClick={(e) => {
+              onDelete(key, e);
             }}
           >
-            {record.description}
-          </p>
-        ),
-      }}
-      dataSource={data}
-    />
+            Delete
+          </Button>
+        </Space>
+      ),
+    },
+  ];
+  const onDelete = (key, e) => {
+    e.preventDefault();
+    const data = videos.filter((data) => data.key !== key);
+    setVideos(data);
+  };
+  return (
+    <Card
+      title={
+        <div className={classes.tableTitle}>
+          Videos
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => onAddClicked(true)}
+            className={classes.addButton}
+          />
+        </div>
+      }
+    >
+      <Table
+        columns={columns}
+        // expandable={{
+        //   expandedRowRender: (record) => (
+        //     <VideoPlayer
+        //       src={record.video}
+        //       width="720"
+        //       height="420"
+        //       controls={true}
+        //     />
+        //   ),
+        // }}
+        dataSource={videos}
+      />
+    </Card>
   );
 };
 

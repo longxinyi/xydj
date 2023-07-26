@@ -2,22 +2,17 @@ import { useState } from "react";
 import Intro from "components/Intro";
 import NewTextPost from "components/Posts/NewTextPost";
 import NewVideoPost from "components/Posts/NewVideoPost";
+import NewTechniques from "components/Techniques/NewTechniques";
 import TextPosts from "components/Posts/TextPost";
 import VideoPosts from "components/Posts/VideoPost";
 import Techniques from "components/Techniques";
 import classes from "./index.module.css";
-import { Button, Typography, Upload } from "antd";
-import { GENRES } from "utility/genres";
-import { ReactComponent as UploadSvg } from "assets/upload.svg";
-const { Text } = Typography;
 
 const Genre = ({ genre }) => {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [showTextModal, setShowTextModal] = useState(false);
-  const [showAddTechniquesModal, setShowAddTechniquesModal] = useState(false);
-  const handleOnAddTechniquesClicked = () => {
-    setShowAddTechniquesModal(true);
-  };
+  const [showTechniquesModal, setShowTechniquesModal] = useState(false);
+
   return (
     <div className={classes.genre}>
       <div className={classes.header}>
@@ -27,33 +22,33 @@ const Genre = ({ genre }) => {
       </div>
 
       <div className={classes.smallerWidgets}>
-        <TextPosts />
-        <div className={classes.newPostBtns}>
-          <Button type="primary" onClick={() => setShowTextModal(true)}>
-            New Text Post
-          </Button>
-
-          {showTextModal && (
-            <NewTextPost genre={genre} setShowTextModal={setShowTextModal} />
-          )}
-
-          <Button type="primary" onClick={() => setShowVideoModal(true)}>
-            New Video Post
-          </Button>
-
-          {showVideoModal && (
-            <NewVideoPost genre={genre} setShowVideoModal={setShowVideoModal} />
-          )}
+        <div className={classes.table}>
+          <TextPosts onAddClicked={setShowTextModal} />
         </div>
+
+        {showTextModal && (
+          <NewTextPost genre={genre} setShowTextModal={setShowTextModal} />
+        )}
+
+        <div className={classes.table}>
+          <Techniques onAddClicked={setShowTechniquesModal} />
+        </div>
+
+        {showTechniquesModal && (
+          <NewTechniques
+            genre={genre}
+            setShowTechniquesModal={setShowTechniquesModal}
+          />
+        )}
       </div>
 
-      <Button
-        icon={<UploadSvg />}
-        onClick={() => handleOnAddTechniquesClicked}
-      />
-      <Techniques />
-      {/* {showAddTechniquesModal && } */}
-      <VideoPosts />
+      <div className={classes.table}>
+        <VideoPosts onAddClicked={setShowVideoModal} />
+      </div>
+
+      {showVideoModal && (
+        <NewVideoPost genre={genre} setShowVideoModal={setShowVideoModal} />
+      )}
     </div>
   );
 };

@@ -1,37 +1,15 @@
 import { SearchOutlined } from "@ant-design/icons";
-import { Button, Input, Space, Table } from "antd";
+import { Button, Input, Space, Table, Card } from "antd";
 import { useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
-const data = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-  },
-  {
-    key: "2",
-    name: "Joe Black",
-    age: 42,
-    address: "London No. 1 Lake Park",
-  },
-  {
-    key: "3",
-    name: "Jim Green",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-  },
-  {
-    key: "4",
-    name: "Jim Red",
-    age: 32,
-    address: "London No. 2 Lake Park",
-  },
-];
+import { TechniquesData } from "assets/dummyData";
+import { PlusOutlined } from "@ant-design/icons";
+import classes from "./index.module.css";
 
-const Techniques = () => {
+const Techniques = ({ onAddClicked }) => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
+  const [techniquesData, setTechniquesData] = useState(TechniquesData);
   const searchInput = useRef(null);
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
@@ -156,29 +134,57 @@ const Techniques = () => {
       title: "Notes",
       dataIndex: "notes",
       key: "notes",
-      width: "20%",
-      ...getColumnSearchProps("notes"),
+      width: "50%",
     },
     {
       title: "Action",
-      dataIndex: "",
+      dataIndex: "tutorial",
       key: "x",
-      render: () => (
+      width: "40%",
+      render: (tutorial, { key }) => (
         <Space size="middle">
-          <a>Tutorial</a>
-          <a>Delete</a>
+          <a href={tutorial} target="_blank" rel="noopener noreferrer">
+            Tutorial
+          </a>
+          <Button
+            onClick={(e) => {
+              onDelete(key, e);
+            }}
+          >
+            Delete
+          </Button>
         </Space>
       ),
     },
   ];
+
+  const onDelete = (key, e) => {
+    e.preventDefault();
+    const data = techniquesData.filter((data) => data.key !== key);
+    setTechniquesData(data);
+  };
+
   return (
-    <Table
-      columns={columns}
-      dataSource={data}
-      bordered
-      pagination
-      title={() => "Techniques"}
-    />
+    <Card
+      title={
+        <div className={classes.tableTitle}>
+          Techniques
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => onAddClicked(true)}
+            className={classes.addButton}
+          />
+        </div>
+      }
+    >
+      <Table
+        columns={columns}
+        dataSource={techniquesData}
+        bordered
+        pagination
+      />
+    </Card>
   );
 };
 

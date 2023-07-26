@@ -17,6 +17,7 @@ import {
   polePath,
   openPath,
 } from "utility/urlConfig/routingPaths";
+import classes from "./index.module.css";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -75,6 +76,7 @@ const NavBar = () => {
         navigate(key);
         setCurrent(key);
       }}
+      className={classes.navBar}
     >
       <Icon component={() => <img src={crown} />}></Icon>
     </Menu>

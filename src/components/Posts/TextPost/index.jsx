@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Card, Pagination } from "antd";
+import { Card, Pagination, Button } from "antd";
 import classes from "./index.module.css";
+import { PlusOutlined } from "@ant-design/icons";
 
-const TextPosts = () => {
+const TextPosts = ({ onAddClicked }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const data = [
     { title: "Card title1", value: "Card content1" },
@@ -26,7 +27,20 @@ const TextPosts = () => {
     setCurrentPage(page);
   };
   return (
-    <div className={classes.textPost}>
+    <Card
+      className={classes.textPost}
+      title={
+        <div className={classes.tableTitle}>
+          Reflections
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => onAddClicked(true)}
+            className={classes.addButton}
+          />
+        </div>
+      }
+    >
       {/* {data &&
         data.map((entry) => {
           <Card title={entry.title} style={{ width: 300 }}>
@@ -43,10 +57,11 @@ const TextPosts = () => {
         simple
         defaultCurrent={currentPage}
         defaultPageSize={1}
-        total={15}
+        total={data.length}
         onChange={onChange}
+        className={classes.pagination}
       />
-    </div>
+    </Card>
   );
 };
 

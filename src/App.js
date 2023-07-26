@@ -1,4 +1,5 @@
 import "./App.css";
+import classes from "./index.css";
 import NavBar from "./components/NavBar";
 import Content from "./pages/Content";
 import { ConfigProvider } from "antd";
@@ -37,7 +38,7 @@ function App() {
           },
         }}
       >
-        <NavBar />
+        <NavBar className={classes.navBar} />
         <Content />
       </ConfigProvider>
     </div>
