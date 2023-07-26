@@ -1,4 +1,4 @@
-import { Button, Form, Input, List, Checkbox } from "antd";
+import { Button, Form, Input, Table, Card } from "antd";
 
 const AddTodo = () => {
   return (
@@ -22,19 +22,41 @@ const AddTodo = () => {
   );
 };
 
-const Todo = () => {
-  return (
-    <>
-      <AddTodo />
-      <List>
-        {DUMMY_DATA.map((todo) => {
-          <Checkbox>{todo.name}</Checkbox>;
-        })}
-      </List>
-    </>
-  );
+const rowSelection = {
+  onChange: (selectedRowKeys, selectedRows) => {
+    console.log(
+      `selectedRowKeys: ${selectedRowKeys}`,
+      "selectedRows: ",
+      selectedRows
+    );
+  },
+  getCheckboxProps: (record) => ({
+    name: record.name,
+  }),
 };
 
-const DUMMY_DATA = () => [{ name: "check this off" }, { name: "22" }];
+const Todo = ({ data }) => {
+  return (
+    <Card title="Todo List">
+      <AddTodo />
+      <Table
+        rowSelection={{
+          type: "checkbox",
+          ...rowSelection,
+        }}
+        columns={[
+          {
+            dataIndex: "name",
+          },
+        ]}
+        dataSource={data}
+        pagination={false}
+        scroll={{
+          y: 100,
+        }}
+      />
+    </Card>
+  );
+};
 
 export default Todo;

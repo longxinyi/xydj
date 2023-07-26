@@ -1,6 +1,6 @@
 import "./App.css";
 import NavBar from "./components/NavBar";
-import Content from "./pages/Content";
+import Content from "./pages";
 import { ConfigProvider } from "antd";
 
 function App() {

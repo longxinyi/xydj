@@ -11,11 +11,16 @@ import Overview from "./Overview";
 import { GENRES } from "utility/genres";
 import Genre from "./Genre";
 
+const DUMMY_DATA = [{ name: "check this off" }, { name: "22" }];
+
 const Content = () => {
   return (
     <div>
       <Routes>
-        <Route element={<Overview />}></Route>
+        <Route
+          path={overviewPath}
+          element={<Overview data={DUMMY_DATA} />}
+        ></Route>
         <Route
           path={hiphopPath}
           element={<Genre genre={GENRES.HIPHOP} />}
