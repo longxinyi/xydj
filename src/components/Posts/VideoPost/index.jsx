@@ -30,11 +30,6 @@ const VideoPosts = ({ onAddClicked }) => {
       key: "date",
     },
     {
-      title: "Notes",
-      dataIndex: "notes",
-      key: "notes",
-    },
-    {
       title: "Action",
       dataIndex: "",
       key: "x",
@@ -77,7 +72,10 @@ const VideoPosts = ({ onAddClicked }) => {
         columns={columns}
         expandable={{
           expandedRowRender: (record) => (
-            <ReactPlayer url={record.video} controls={true} />
+            <>
+              <ReactPlayer url={record.video} controls={true} />
+              <div>{record.notes}</div>
+            </>
           ),
         }}
         dataSource={videos}

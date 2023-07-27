@@ -1,0 +1,4 @@
+.list-sort-demo-list.list-drag-selected {
+  box-shadow: 0 8px 20px #e6e6e6;
+  transform: scale(1.1) !important;
+}

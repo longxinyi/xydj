@@ -7,40 +7,39 @@ import { Card, Typography } from "antd";
 
 const { Text } = Typography;
 
-const DUMMY_DATA = [
-  {
-    key: 1,
-    title: "HIP HOP",
-    //icon: hiphopIcon,
-    value: 0,
-  },
-  {
-    key: 2,
-    title: "HEELS",
-    //icon: `url(${heelsIcon})`,
-    value: 0,
-  },
-  {
-    key: 3,
-    title: "POLE",
-    //icon: `url(${poleIcon})`,
-    value: 0,
-  },
-  {
-    key: 4,
-    title: "STREETJAZZ",
-    //icon: `url(${streetJazzIcon})`,
-    value: 0,
-  },
-  {
-    key: 5,
-    title: "OPEN",
-    //icon: `url(${openIcon})`,
-    value: 0,
-  },
-];
-
 const ChoreoStats = () => {
+  const DUMMY_DATA = [
+    {
+      key: 1,
+      title: "HIP HOP",
+      //icon: hiphopIcon,
+      value: 0,
+    },
+    {
+      key: 2,
+      title: "HEELS",
+      //icon: `url(${heelsIcon})`,
+      value: 0,
+    },
+    {
+      key: 3,
+      title: "POLE",
+      //icon: `url(${poleIcon})`,
+      value: 0,
+    },
+    {
+      key: 4,
+      title: "STREETJAZZ",
+      //icon: `url(${streetJazzIcon})`,
+      value: 0,
+    },
+    {
+      key: 5,
+      title: "OPEN",
+      //icon: `url(${openIcon})`,
+      value: 0,
+    },
+  ];
   return (
     <Card>
       <ul>
