@@ -13,7 +13,6 @@ import {
   overviewPath,
   hiphopPath,
   heelsPath,
-  streetjazzPath,
   polePath,
   openPath,
 } from "utility/urlConfig/routingPaths";
@@ -42,10 +41,6 @@ const NavBar = () => {
           key: heelsPath,
         },
         {
-          label: "Street Jazz",
-          key: streetjazzPath,
-        },
-        {
           label: "Pole",
           key: polePath,
         },
@@ -54,15 +49,6 @@ const NavBar = () => {
           key: openPath,
         },
       ],
-    },
-    {
-      label: (
-        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
-          Tiktok
-        </a>
-      ),
-      key: "tiktok",
-      icon: <ShareAltOutlined />,
     },
   ];
 

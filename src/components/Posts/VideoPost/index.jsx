@@ -1,12 +1,36 @@
 import { Table, Space, Button, Card } from "antd";
-import { useState } from "react";
-import { VideosData } from "assets/dummyData";
+import { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import { PlusOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
 
-const VideoPosts = ({ onAddClicked }) => {
-  const [videos, setVideos] = useState(VideosData);
+const VideoPosts = ({ genre, onAddClicked }) => {
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    const fetchVideoPosts = async () => {
+      const currGenre = genre.toLowerCase();
+      const response = await fetch(
+        `https://xydj-d088f-default-rtdb.asia-southeast1.firebasedatabase.app/videoPosts/${currGenre}.json`
+      );
+      const responseData = await response.json();
+
+      const loadedVideos = [];
+
+      for (const key in responseData) {
+        loadedVideos.push({
+          key: key,
+          name: responseData[key].name,
+          artist: responseData[key].artist,
+          choreographer: responseData[key].choreographer,
+          date: responseData[key].date,
+          tutorial: responseData[key].link,
+        });
+      }
+      setVideos(loadedVideos);
+    };
+    fetchVideoPosts();
+  });
 
   const columns = [
     {
@@ -31,7 +55,7 @@ const VideoPosts = ({ onAddClicked }) => {
     },
     {
       title: "Action",
-      dataIndex: "",
+      dataIndex: "tutorial",
       key: "x",
       render: (tutorial, { key }) => (
         <Space size="middle">
@@ -67,6 +91,7 @@ const VideoPosts = ({ onAddClicked }) => {
           />
         </div>
       }
+      className={classes.card}
     >
       <Table
         columns={columns}

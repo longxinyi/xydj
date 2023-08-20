@@ -11,7 +11,10 @@ import Overview from "./Overview";
 import { GENRES } from "utility/genres";
 import Genre from "./Genre";
 
-const DUMMY_DATA = [{ name: "check this off" }, { name: "22" }];
+const DUMMY_DATA = [
+  { name: "check this off", completed: false },
+  { name: "22", completed: false },
+];
 
 const Content = () => {
   return (
@@ -28,10 +31,6 @@ const Content = () => {
         <Route
           path={heelsPath}
           element={<Genre genre={GENRES.HEELS} />}
-        ></Route>
-        <Route
-          path={streetjazzPath}
-          element={<Genre genre={GENRES.STREETJAZZ} />}
         ></Route>
         <Route path={polePath} element={<Genre genre={GENRES.POLE} />}></Route>
         <Route path={openPath} element={<Genre genre={GENRES.OPEN} />}></Route>

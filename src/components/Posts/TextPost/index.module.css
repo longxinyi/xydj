@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: 400px;
+  height: 415px;
 }
 
 .pagination {

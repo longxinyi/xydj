@@ -1,8 +1,10 @@
 import { Button, Form, Input, Table, Card } from "antd";
+import { CheckOutlined } from "@ant-design/icons";
+import classes from "./index.module.css";
 
 const AddTodo = () => {
   return (
-    <Form>
+    <Form className={classes.addTodo}>
       <Form.Item
         rules={[
           {
@@ -10,8 +12,9 @@ const AddTodo = () => {
             message: "Unable to add empty task!",
           },
         ]}
+        className={classes.inputBar}
       >
-        <Input placeholder="What's next?" />
+        <Input placeholder="what's next?" />
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit">
@@ -22,31 +25,31 @@ const AddTodo = () => {
   );
 };
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      "selectedRows: ",
-      selectedRows
-    );
-  },
-  getCheckboxProps: (record) => ({
-    name: record.name,
-  }),
+const TodoItem = ({ record }) => {
+  const handleOnClick = () => {
+    console.log("set to completed");
+    //change status of todo item to false and send to backend
+  };
+  return (
+    <div className={classes.todoItem}>
+      <p>{record.name}</p>
+      <Button
+        icon={<CheckOutlined style={{ color: "#da98a8" }} />}
+        onClick={handleOnClick}
+      />
+    </div>
+  );
 };
 
 const Todo = ({ data }) => {
   return (
-    <Card title="Todo List">
+    <Card title="Todo List" className={classes.todoList}>
       <AddTodo />
       <Table
-        rowSelection={{
-          type: "checkbox",
-          ...rowSelection,
-        }}
         columns={[
           {
-            dataIndex: "name",
+            key: "item",
+            render: (record) => <TodoItem record={record} />,
           },
         ]}
         dataSource={data}

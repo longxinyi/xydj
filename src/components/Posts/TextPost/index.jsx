@@ -3,7 +3,7 @@ import { Card, Pagination, Button } from "antd";
 import classes from "./index.module.css";
 import { PlusOutlined } from "@ant-design/icons";
 
-const TextPosts = ({ onAddClicked }) => {
+const TextPosts = ({ onAddClicked = undefined }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const data = [
     { title: "Card title1", value: "Card content1" },
@@ -32,12 +32,14 @@ const TextPosts = ({ onAddClicked }) => {
       title={
         <div className={classes.tableTitle}>
           Reflections
-          <Button
-            type="primary"
-            icon={<PlusOutlined />}
-            onClick={() => onAddClicked(true)}
-            className={classes.addButton}
-          />
+          {onAddClicked && (
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={() => onAddClicked(true)}
+              className={classes.addButton}
+            />
+          )}
         </div>
       }
     >

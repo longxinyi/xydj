@@ -1,26 +1,68 @@
-import { Modal, Form, DatePicker, Select, Input } from "antd";
-import { useState } from "react";
+import { Modal, Form, Input } from "antd";
+import { useState, useEffect } from "react";
 
 const NewTechniques = ({ genre, setShowTechniquesModal }) => {
-  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [isBtnDisabled, setIsBtnDisabled] = useState(true);
 
-  // const showModal = () => {
-  //   setOpen(true);
-  // };
-  const handleOk = () => {
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setShowTechniquesModal(false);
-      setConfirmLoading(false);
-    }, 2000);
-    //send data to firebase
+  const baseState = {
+    name: "",
+    notes: "",
+    link: "",
   };
+
+  const [technique, setTechnique] = useState(baseState);
+
+  const handleOk = async () => {
+    setShowTechniquesModal(false);
+
+    const currGenre = genre.toLowerCase();
+    await fetch(
+      `https://xydj-d088f-default-rtdb.asia-southeast1.firebasedatabase.app/techniques/${currGenre}.json`,
+      {
+        method: "POST",
+        body: JSON.stringify(technique),
+      }
+    );
+  };
+
+  useEffect(() => {
+    if (
+      technique.name !== "" &&
+      technique.notes !== "" &&
+      technique.link !== ""
+    ) {
+      setIsBtnDisabled(false);
+    }
+  }, [technique]);
+
+  const onChangeNameHandler = (e) => {
+    const newTechnique = {
+      ...technique,
+      name: e.target.value,
+    };
+    setTechnique(newTechnique);
+  };
+  const onChangeNotesHandler = (e) => {
+    const newTechnique = {
+      ...technique,
+      notes: e.target.value,
+    };
+    setTechnique(newTechnique);
+  };
+  const onChangeTutorialHandler = (e) => {
+    const newTechnique = {
+      ...technique,
+      link: e.target.value,
+    };
+    setTechnique(newTechnique);
+  };
+
   return (
     <Modal
       title="New Technique Learnt?"
       open={true}
       onOk={handleOk}
-      confirmLoading={confirmLoading}
+      okButtonProps={{ disabled: isBtnDisabled }}
       onCancel={() => setShowTechniquesModal(false)}
     >
       <Form
@@ -36,28 +78,21 @@ const NewTechniques = ({ genre, setShowTechniquesModal }) => {
         }}
       >
         <Form.Item label="Name">
-          <Input />
+          <Input onChange={onChangeNameHandler} />
         </Form.Item>
         <Form.Item label="Notes">
-          <DatePicker />
+          <Input onChange={onChangeNotesHandler} />
         </Form.Item>
-        {genre ? (
-          <Form.Item label="Genre">
-            <Input placeholder={genre} disabled></Input>
-          </Form.Item>
-        ) : (
-          <Form.Item label="Genre">
-            <Select>
-              <Select.Option value="hiphop">HipHop</Select.Option>
-              <Select.Option value="pole">Pole</Select.Option>
-              <Select.Option value="heels">Heels</Select.Option>
-              <Select.Option value="open">Open</Select.Option>
-              <Select.Option value="streetJazz">Street Jazz</Select.Option>
-            </Select>
-          </Form.Item>
-        )}
+
+        <Form.Item label="Genre">
+          <Input placeholder={genre} disabled></Input>
+        </Form.Item>
+
         <Form.Item label="Tutorial">
-          <Input placeholder="Maybe a youtube link?" />
+          <Input
+            placeholder="Maybe a youtube link?"
+            onChange={onChangeTutorialHandler}
+          />
         </Form.Item>
       </Form>
     </Modal>

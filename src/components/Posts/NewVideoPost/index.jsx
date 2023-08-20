@@ -1,33 +1,77 @@
 import { Button, Modal, Form, Input, DatePicker, Select, Upload } from "antd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const { TextArea } = Input;
 
 const NewVideoPost = ({ genre, setShowVideoModal }) => {
-  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [isBtnDisabled, setIsBtnDisabled] = useState(true);
 
-  // const showModal = () => {
-  //   setOpen(true);
-  // };
-  const handleOk = () => {
-    setConfirmLoading(true);
-    setTimeout(() => {
-      //setOpen(false);
-      setShowVideoModal(false);
-      setConfirmLoading(false);
-    }, 2000);
-    //send data to firebase
+  const baseState = {
+    title: "",
+    date: undefined,
+    file: undefined,
+    thoughts: "",
   };
-  // const handleCancel = () => {
-  //   console.log("Clicked cancel button");
-  //   //    setOpen(false);
-  // };
+
+  const [videoPost, setVideoPost] = useState(baseState);
+
+  const handleOk = async () => {
+    setShowVideoModal(false);
+    const currGenre = genre.toLowerCase();
+    await fetch(
+      `https://xydj-d088f-default-rtdb.asia-southeast1.firebasedatabase.app/videoposts/${currGenre}.json`,
+      {
+        method: "POST",
+        body: JSON.stringify(videoPost),
+      }
+    );
+  };
+
+  useEffect(() => {
+    if (
+      videoPost.title !== "" &&
+      videoPost.date !== undefined &&
+      videoPost.thoughts !== "" &&
+      videoPost.file !== undefined
+    ) {
+      setIsBtnDisabled(false);
+    }
+  }, [videoPost]);
+
+  const onChangeTitleHandler = (e) => {
+    const newVideoPost = {
+      ...videoPost,
+      title: e.target.value,
+    };
+    setVideoPost(newVideoPost);
+  };
+  const onChangeDateHandler = (e) => {
+    const newVideoPost = {
+      ...videoPost,
+      date: e,
+    };
+    setVideoPost(newVideoPost);
+  };
+  const onChangeThoughtsHandler = (e) => {
+    const newVideoPost = {
+      ...videoPost,
+      thoughts: e.target.value,
+    };
+    setVideoPost(newVideoPost);
+  };
+  const onChangeFileHandler = (e) => {
+    const newVideoPost = {
+      ...videoPost,
+      file: e,
+    };
+    setVideoPost(newVideoPost);
+  };
+
   return (
     <div>
       <Modal
         title="Upload a Dance Prac!"
         open={true}
         onOk={handleOk}
-        confirmLoading={confirmLoading}
         onCancel={() => setShowVideoModal(false)}
       >
         <Form
@@ -43,40 +87,29 @@ const NewVideoPost = ({ genre, setShowVideoModal }) => {
           }}
         >
           <Form.Item label="Title">
-            <Input />
+            <Input onChange={onChangeTitleHandler} />
           </Form.Item>
           <Form.Item label="Date">
-            <DatePicker />
+            <DatePicker onChange={onChangeDateHandler} />
           </Form.Item>
-          {genre ? (
-            <Form.Item label="Genre">
-              <Input placeholder={genre} disabled></Input>
-            </Form.Item>
-          ) : (
-            <Form.Item label="Genre">
-              <Select>
-                <Select.Option value="general">General</Select.Option>
-                <Select.Option value="hiphop">HipHop</Select.Option>
-                <Select.Option value="pole">Pole</Select.Option>
-                <Select.Option value="heels">Heels</Select.Option>
-                <Select.Option value="open">Open</Select.Option>
-                <Select.Option value="streetJazz">Street Jazz</Select.Option>
-              </Select>
-            </Form.Item>
-          )}
+
+          <Form.Item label="Genre">
+            <Input placeholder={genre} disabled></Input>
+          </Form.Item>
+
           <Upload
             //className="mt-3 mb-3"
             accept=".mp4"
             //action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
             listType="picture"
             maxCount={1}
-            //onChange={handleChange}
+            onChange={onChangeFileHandler}
           >
             <Button>Upload</Button>
           </Upload>
 
           <Form.Item label="Thoughts">
-            <TextArea rows={4} />
+            <TextArea rows={4} onChange={onChangeThoughtsHandler} />
           </Form.Item>
         </Form>
       </Modal>

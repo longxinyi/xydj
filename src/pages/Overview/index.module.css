@@ -1,0 +1,32 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin: 15px 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 15px 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+.newPostBtn {
+  display: flex;
+  align-self: flex-start;
+  justify-self: flex-start;
+}
+
+.background {
+  background-image: url("../../assets/backgroundImages/wallpaper.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  height: 100%;
+}

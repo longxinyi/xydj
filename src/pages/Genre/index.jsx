@@ -23,7 +23,7 @@ const Genre = ({ genre }) => {
 
       <div className={classes.smallerWidgets}>
         <div className={classes.table}>
-          <TextPosts onAddClicked={setShowTextModal} />
+          <TextPosts genre={genre} onAddClicked={setShowTextModal} />
         </div>
 
         {showTextModal && (
@@ -31,7 +31,7 @@ const Genre = ({ genre }) => {
         )}
 
         <div className={classes.table}>
-          <Techniques onAddClicked={setShowTechniquesModal} />
+          <Techniques onAddClicked={setShowTechniquesModal} genre={genre} />
         </div>
 
         {showTechniquesModal && (
@@ -43,7 +43,7 @@ const Genre = ({ genre }) => {
       </div>
 
       <div className={classes.table}>
-        <VideoPosts onAddClicked={setShowVideoModal} />
+        <VideoPosts genre={genre} onAddClicked={setShowVideoModal} />
       </div>
 
       {showVideoModal && (

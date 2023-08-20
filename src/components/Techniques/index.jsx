@@ -1,16 +1,40 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Space, Table, Card } from "antd";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { TechniquesData } from "assets/dummyData";
 import { PlusOutlined } from "@ant-design/icons";
 import classes from "./index.module.css";
 
-const Techniques = ({ onAddClicked }) => {
+const Techniques = ({ onAddClicked, genre }) => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
-  const [techniquesData, setTechniquesData] = useState(TechniquesData);
+  const [techniquesData, setTechniquesData] = useState([]);
   const searchInput = useRef(null);
+
+  useEffect(() => {
+    const fetchTechniques = async () => {
+      const currGenre = genre.toLowerCase();
+      const response = await fetch(
+        `https://xydj-d088f-default-rtdb.asia-southeast1.firebasedatabase.app/techniques/${currGenre}.json`
+      );
+      const responseData = await response.json();
+
+      const loadedTechniques = [];
+
+      for (const key in responseData) {
+        loadedTechniques.push({
+          key: key,
+          name: responseData[key].name,
+          notes: responseData[key].notes,
+          tutorial: responseData[key].link,
+        });
+      }
+      setTechniquesData(loadedTechniques);
+    };
+    fetchTechniques();
+  });
+
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
@@ -158,10 +182,14 @@ const Techniques = ({ onAddClicked }) => {
     },
   ];
 
-  const onDelete = (key, e) => {
-    e.preventDefault();
-    const data = techniquesData.filter((data) => data.key !== key);
-    setTechniquesData(data);
+  const onDelete = async (key) => {
+    const currGenre = genre.toLowerCase();
+    await fetch(
+      `https://xydj-d088f-default-rtdb.asia-southeast1.firebasedatabase.app/techniques/${currGenre}/${key}.json`,
+      {
+        method: "DELETE",
+      }
+    );
   };
 
   return (
@@ -177,12 +205,13 @@ const Techniques = ({ onAddClicked }) => {
           />
         </div>
       }
+      className={classes.card}
     >
       <Table
         columns={columns}
         dataSource={techniquesData}
         bordered
-        pagination
+        pagination={{ pageSize: 3 }}
       />
     </Card>
   );
